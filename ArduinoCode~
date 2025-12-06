@@ -1,0 +1,68 @@
+int trig = 2;
+int echo = 3;
+int pin = 9;
+int trig1 = 4;
+int echo1 = 5;
+int pin1 = 10;
+
+void setup() {
+  Serial.begin(9600);
+
+  pinMode(trig, OUTPUT);
+  pinMode(echo, INPUT);
+  pinMode(pin, OUTPUT);
+
+  pinMode(trig1, OUTPUT);
+  pinMode(echo1, INPUT);
+  pinMode(pin1, OUTPUT);
+}
+
+void loop() {
+  int duration , distance;
+  digitalWrite(trig, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trig, LOW);
+  duration = pulseIn(echo, HIGH);
+  distance = (duration / 2) / 21.9;
+  Serial.print(distance);
+  Serial.print("cm");
+  delay(50);
+
+  int duration1 , distance1;
+  digitalWrite(trig1, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trig1, LOW);
+  duration1 = pulseIn(echo1, HIGH);
+  distance1 = (duration1 / 2) / 21.9;
+  Serial.print(distance1);
+  Serial.print("cm");
+  delay(50);
+
+  if (distance < 3) tone(pin, 349.23);
+  else if (distance < 6) tone(pin, 369.99);
+  else if (distance < 9) tone(pin, 392);
+  else if (distance < 12) tone(pin, 415.3);
+  else if (distance < 15) tone(pin, 440);
+  else if (distance < 18) tone(pin, 466.16);
+  else if (distance < 21) tone(pin, 493.88);
+  else if (distance < 24) tone(pin, 523.25);
+  else if (distance < 27) tone(pin, 554.37);
+  else if (distance < 30) tone(pin, 587.33);
+  else if (distance < 33) tone(pin, 622.25);
+  else if (distance < 36) tone(pin, 659.26);
+  else noTone(pin);
+
+  if (distance1 < 3) tone(pin1, 1318.5);
+  else if (distance1 < 6) tone(pin1, 1244.5);
+  else if (distance1 < 9) tone(pin1, 1174.7);
+  else if (distance1 < 12) tone(pin1, 1108.7);
+  else if (distance1 < 15) tone(pin1, 1046.5);
+  else if (distance1 < 18) tone(pin1, 987.77);
+  else if (distance1 < 21) tone(pin1, 932.33);
+  else if (distance1 < 24) tone(pin1, 880);
+  else if (distance1 < 27) tone(pin1, 830.61);
+  else if (distance1 < 30) tone(pin1, 783.99);
+  else if (distance1 < 33) tone(pin1, 739.99);
+  else if (distance1 < 36) tone(pin1, 698.46);
+  else noTone(pin1);
+}
